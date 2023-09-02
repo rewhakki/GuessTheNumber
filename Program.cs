@@ -31,11 +31,20 @@ namespace GuessTheNumber
                 while (userNum != compNum)
                 {
                     Console.Write($"Write a number (You only have {attempts} attempts!): ");
-                    userNum = Convert.ToInt32(Console.ReadLine());
+
+                    try
+                    {
+                        userNum = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch(Exception)
+                    {
+                        Console.WriteLine("Character that is not a number! Play again!");
+                        break;
+                    }
 
                     if (userNum < 1 || userNum > 100)
                     {
-                        Console.WriteLine("Wrong number and character that is not a number!");
+                        Console.WriteLine("Wrong number! Play again!");
                         break;
                     }
 
