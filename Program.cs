@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -30,25 +31,23 @@ namespace GuessTheNumber
 
                 while (userNum != compNum)
                 {
-                    Console.Write($"Write a number (You only have {attempts} attempts!): ");
+                    Console.Write($"\nWrite a number (You only have {attempts} attempts!): ");
 
                     try
                     {
-                        userNum = Convert.ToInt32(Console.ReadLine());
+                        userNum = int.Parse(Console.ReadLine());
                     }
                     catch(Exception)
                     {
-                        Console.WriteLine("Character that is not a number! Play again!");
-                        break;
+                        Console.WriteLine("Character that is not a number!");
                     }
 
                     if (userNum < 1 || userNum > 100)
                     {
-                        Console.WriteLine("Wrong number! Play again!");
-                        break;
+                        Console.WriteLine("Wrong number!");
                     }
 
-                    if (userNum > compNum)
+                    else if (userNum > compNum)
                     {
                         Console.WriteLine($"{userNum} is to high!");
                         --attempts;
@@ -64,7 +63,7 @@ namespace GuessTheNumber
                         break;
                     }
 
-                    if (attempts <= 0)
+                    if (attempts == 0)
                     {
                         Console.WriteLine("YOU LOSE! The attempts are over!");
                         break;
